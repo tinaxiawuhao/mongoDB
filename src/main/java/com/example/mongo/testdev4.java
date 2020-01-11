@@ -1,5 +1,14 @@
 package com.example.mongo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
 public class testdev4 {
-    //测试
+    private String four;
 }
