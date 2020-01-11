@@ -1,12 +1,16 @@
 package com.example.mongo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder
 public class test {
-    //测试master分支
-    //测试dev2分支
-    //测试dev2分支
-    //测试dev3分支
-    //测试dev3分支
-    //测试dev3分支
-    //测试dev2分支
-    //测试dev2分支
+  //
+    private String one;
 }
