@@ -49,7 +49,7 @@ class MongoApplicationTests {
         File file = new File("D:\\素材图\\1.jpg");
         FileInputStream inputStream = new FileInputStream(file);
         //保存模版文件内容
-        ObjectId fileId  = gridFsTemplate.store(inputStream, "测试文件1","");
+        ObjectId fileId  = gridFsTemplate.store(inputStream, "测试文件","");
         System.out.println(fileId);
     }
 
