@@ -13,4 +13,5 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class test {
     private String one;
     private String master;
+    //测试master主干提交
 }
