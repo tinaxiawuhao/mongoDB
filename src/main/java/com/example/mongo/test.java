@@ -11,6 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Data
 @Builder
 public class test {
-  //
     private String one;
+    private String master;
 }
