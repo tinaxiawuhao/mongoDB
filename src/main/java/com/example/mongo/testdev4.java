@@ -11,5 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class testdev4 {
     private String four;
-    //dev4
+    private String dev4;
+
 }
