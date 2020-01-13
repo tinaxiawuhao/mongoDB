@@ -1,4 +1,4 @@
-package com.example.mongo;
+package com.example.mongo.mongodb;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;

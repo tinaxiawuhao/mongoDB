@@ -9,3 +9,70 @@ spring:
 #      database: admin
       uri: mongodb://localhost:27017
       database: xc_cms
+
+  datasource:
+    # 配置数据源类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      initial-size: 5
+      max-active: 10
+      min-idle: 5
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      validation-query: select 1
+      validation-query-timeout: 60000
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      filter:
+        stat:
+          log-slow-sql: true
+          db-type: mysql
+          slow-sql-millis: 2000
+      stat-view-servlet:
+        login-username: druid
+        login-password: druid
+        allow: 127.0.0.1
+        url-pattern: /druid/*
+      username: root
+      password: root
+      url: jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2B8
+mybatis:
+  # mapper扫描路径
+  mapper-locations: classpath:mapper/*Mapper.xml
+  # 可以直接指定package的名字， mybatis会自动扫描你指定包下面的javabean,
+  type-aliases-package: com.example.mongo
+  # 配置文件路径（已经在yaml配置，故不用）
+  # config-location:
+  configuration:
+    # 所有映射器中配置的缓存的全局开关
+    cache-enabled: false
+    # 延迟加载的全局开关 配置二级缓存时将此属性关闭
+    lazy-loading-enabled: false
+    # 关联对象加载 配置二级缓存时将此属性关闭
+    aggressive-lazy-loading: false
+    # 是否允许单一语句返回多结果集
+    multiple-result-sets-enabled: true
+    # 使用列标签代替列名
+    use-column-label: false
+    # 允许在嵌套语句中使用行分界
+    safe-row-bounds-enabled: false
+    # 允许 JDBC 支持自动生成主键，需要驱动兼容
+    use-generated-keys: false
+    # 指定 MyBatis 是否以及如何自动映射指定的列到字段或属性
+    auto-mapping-behavior: partial
+    # 配置默认的执行器
+    default-executor-type: simple
+    # 设置超时时间，它决定驱动等待数据库响应的秒数
+    default-statement-timeout: 30
+    # 是否开启自动驼峰命名规则映射
+    map-underscore-to-camel-case: false
+    # 利用本地缓存机制防止循环引用和加速重复嵌套查询 默认值为 SESSION，这种情况下会缓存一个会话中执行的所有查询
+    local-cache-scope: session
+    # 当没有为参数提供特定的 JDBC 类型时，为空值指定 JDBC 类型
+    jdbc-type-for-null: other
+    # 指定哪些对象的方法触发一次延迟加载
+    lazy-load-trigger-methods: equals,clone,hashCode,toString

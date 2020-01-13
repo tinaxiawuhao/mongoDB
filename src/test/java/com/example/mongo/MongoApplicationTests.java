@@ -1,6 +1,7 @@
 package com.example.mongo;
 
 
+import com.example.mongo.service.DeptService;
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSDownloadStream;
 import com.mongodb.client.gridfs.model.GridFSFile;
@@ -27,6 +28,9 @@ class MongoApplicationTests {
 
     @Autowired
     GridFSBucket gridFSBucket;
+
+    @Autowired
+    TestService testService;
 
     @Test
     public void queryFile() throws IOException {
@@ -58,6 +62,12 @@ class MongoApplicationTests {
     public void testDelFile() throws IOException {
         //根据文件id删除fs.files和fs.chunks中的记录
         gridFsTemplate.delete(Query.query(Criteria.where("_id").is("5e0f0e61250ba450a487c934")));
+    }
+
+    //删除文件
+    @Test
+    public void testTransactional() {
+        testService.test1();
     }
 
 }
