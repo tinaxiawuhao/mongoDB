@@ -13,4 +13,6 @@ public class testdev2 {
     private String two;
     private String dev2;
     //dev2分支提交
+    private String dev3;
+    //dev3分支提交
 }
