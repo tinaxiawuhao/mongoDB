@@ -14,6 +14,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.gridfs.GridFsResource;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
+import org.springframework.test.annotation.Rollback;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -64,7 +65,7 @@ class MongoApplicationTests {
         gridFsTemplate.delete(Query.query(Criteria.where("_id").is("5e0f0e61250ba450a487c934")));
     }
 
-    //删除文件
+    //测试
     @Test
     public void testTransactional() {
         testService.test1();
