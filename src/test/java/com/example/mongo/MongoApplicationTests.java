@@ -1,7 +1,6 @@
 package com.example.mongo;
 
 
-import com.example.mongo.service.DeptService;
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSDownloadStream;
 import com.mongodb.client.gridfs.model.GridFSFile;
@@ -14,7 +13,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.gridfs.GridFsResource;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
-import org.springframework.test.annotation.Rollback;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,9 +28,6 @@ class MongoApplicationTests {
     @Autowired
     GridFSBucket gridFSBucket;
 
-    @Autowired
-    TestService testService;
-
     @Test
     public void queryFile() throws IOException {
         //5c7f660608726733f47b3f78
@@ -40,6 +35,7 @@ class MongoApplicationTests {
         //根据id查询文件
         GridFSFile gridFSFile = gridFsTemplate.findOne(Query.query(Criteria.where("_id").is(fileId)));
         //打开下载流对象
+        assert gridFSFile != null;
         GridFSDownloadStream gridFSDownloadStream = gridFSBucket.openDownloadStream(gridFSFile.getObjectId());
         //创建gridFsResource，用于获取流对象
         GridFsResource gridFsResource = new GridFsResource(gridFSFile, gridFSDownloadStream);
@@ -63,12 +59,6 @@ class MongoApplicationTests {
     public void testDelFile() throws IOException {
         //根据文件id删除fs.files和fs.chunks中的记录
         gridFsTemplate.delete(Query.query(Criteria.where("_id").is("5e0f0e61250ba450a487c934")));
-    }
-
-    //测试
-    @Test
-    public void testTransactional() {
-        testService.test1();
     }
 
 }

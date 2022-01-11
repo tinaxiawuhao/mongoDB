@@ -1,0 +1,10 @@
+GET http://localhost:8080/save
+###
+
+GET http://localhost:8080/find
+###
+
+GET http://localhost:8080/update
+###
+
+GET http://localhost:8080/delete

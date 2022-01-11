@@ -1,6 +1,7 @@
-package com.example.mongo.mongodb;
+package com.example.mongo.config;
 
-import com.mongodb.MongoClient;
+
+import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSBuckets;
@@ -16,7 +17,6 @@ public class MongoConfig {
     @Bean
     public GridFSBucket getGridFSBucket(MongoClient mongoClient) {
         MongoDatabase database = mongoClient.getDatabase(db);
-        GridFSBucket bucket = GridFSBuckets.create(database);
-        return bucket;
+        return GridFSBuckets.create(database);
     }
 }
