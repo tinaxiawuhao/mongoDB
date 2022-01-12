@@ -18,7 +18,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
+/**
+ * GridFS 用于存储和恢复那些超过16M（BSON文件限制）的文件(如：图片、音频、视频等)。
+ */
 @SpringBootTest
 class MongoApplicationTests {
 
@@ -31,7 +35,7 @@ class MongoApplicationTests {
     @Test
     public void queryFile() throws IOException {
         //5c7f660608726733f47b3f78
-        String fileId = "5e0f0e61250ba450a487c934";
+        String fileId = "61dd42e9d0f9d47bd3c22ee1";
         //根据id查询文件
         GridFSFile gridFSFile = gridFsTemplate.findOne(Query.query(Criteria.where("_id").is(fileId)));
         //打开下载流对象
@@ -40,14 +44,14 @@ class MongoApplicationTests {
         //创建gridFsResource，用于获取流对象
         GridFsResource gridFsResource = new GridFsResource(gridFSFile, gridFSDownloadStream);
         //获取流中的数据
-        String s = IOUtils.toString(gridFsResource.getInputStream(), "UTF-8");
+        String s = IOUtils.toString(gridFsResource.getInputStream(), StandardCharsets.UTF_8);
         System.out.println(s);
 
     }
 
     @Test
     void contextLoads() throws FileNotFoundException {
-        File file = new File("D:\\素材图\\1.jpg");
+        File file = new File("D:\\谷歌浏览器下载\\Xshell-7.0.0090p.exe");
         FileInputStream inputStream = new FileInputStream(file);
         //保存模版文件内容
         ObjectId fileId  = gridFsTemplate.store(inputStream, "测试文件","");
@@ -58,7 +62,7 @@ class MongoApplicationTests {
     @Test
     public void testDelFile() throws IOException {
         //根据文件id删除fs.files和fs.chunks中的记录
-        gridFsTemplate.delete(Query.query(Criteria.where("_id").is("5e0f0e61250ba450a487c934")));
+        gridFsTemplate.delete(Query.query(Criteria.where("_id").is("61dd42e9d0f9d47bd3c22ee1")));
     }
 
 }
